@@ -1,0 +1,96 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item">Product & Article</li>
+        <li class="breadcrumb-item active">New Article</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">New Article</h5>
+        <form [formGroup]="articleForm" (ngSubmit)="onSubmit()" class="row g-3">
+          <div class="col-6">
+            <label for="articleRef" class="form-label">Article Ref</label>
+            <input type="text" id="articleRef" formControlName="articleRef" class="form-control">
+            <div *ngIf="articleForm.get('articleRef')?.invalid && articleForm.get('articleRef')?.touched || showAlert">
+              <small class="text-danger" *ngIf="articleForm.get('articleRef')?.errors?.['required']">Article Ref is
+                required.</small>
+              <small class="text-danger" *ngIf="articleForm.get('articleRef')?.errors?.['pattern']">Invalid format (3-10
+                alphanumeric
+                characters).</small>
+            </div>
+          </div>
+          <div class="col-6">
+            <label for="articleName" class="form-label">Article Name</label>
+            <input type="text" id="articleName" formControlName="articleName" class="form-control">
+            <div
+              *ngIf="articleForm.get('articleName')?.invalid && articleForm.get('articleName')?.touched || showAlert">
+              <small class="text-danger" *ngIf="articleForm.get('articleName')?.errors?.['required']">Article Name is
+                required.</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="FamilySelect" class="form-label">Product Family</label>
+            <select id="FamilySelect" formControlName="productFamily" class="form-select">
+              <option value="">Select a family</option>
+              <option value="Computer">Computer</option>
+              <option value="TV">TV</option>
+              <option value="Cleaning machine">Cleaning machine</option>
+            </select>
+            <div
+              *ngIf="articleForm.get('productFamily')?.invalid && articleForm.get('productFamily')?.touched || showAlert">
+              <small class="text-danger" *ngIf="articleForm.get('productFamily')?.errors?.['required']">Product Family
+                is required.</small>
+            </div>
+          </div>
+          <div class="col-6">
+            <label for="articleDesc" class="form-label">Description of Article</label>
+            <input type="text" id="articleDesc" formControlName="articleDesc" class="form-control">
+            <div
+              *ngIf="articleForm.get('articleDesc')?.invalid && articleForm.get('articleDesc')?.touched || showAlert">
+              <small class="text-danger" *ngIf="articleForm.get('articleDesc')?.errors?.['required']">Description is
+                required.</small>
+            </div>
+          </div>
+          <div class="col-6">
+            <label for="pricPurchase" class="form-label">Purchase Price</label>
+            <input type="text" id="pricPurchase" formControlName="pricPurchase" class="form-control">
+            <div
+              *ngIf="articleForm.get('pricPurchase')?.invalid && articleForm.get('pricPurchase')?.touched || showAlert">
+              <small class="text-danger" *ngIf="articleForm.get('pricPurchase')?.errors?.['required']">Purchase Price is
+                required.</small>
+              <small class="text-danger" *ngIf="articleForm.get('pricPurchase')?.errors?.['pattern']">Invalid price
+                format.</small>
+            </div>
+          </div>
+          <div class="col-6">
+            <label for="sellingPrice" class="form-label">Selling Price</label>
+            <input type="text" id="sellingPrice" formControlName="sellingPrice" class="form-control">
+            <div
+              *ngIf="articleForm.get('sellingPrice')?.invalid && articleForm.get('sellingPrice')?.touched || showAlert">
+              <small class="text-danger" *ngIf="articleForm.get('sellingPrice')?.errors?.['required']">Selling Price is
+                required.</small>
+              <small class="text-danger" *ngIf="articleForm.get('sellingPrice')?.errors?.['pattern']">Invalid price
+                format.</small>
+            </div>
+          </div>
+          <div class="text-start">
+            <button type="submit" class="btn btn-primary m-2">Create</button>
+            <!-- <button type="reset" class="btn btn-secondary m-2">Reset</button> -->
+            <a routerLink="/list-article" class="btn btn-secondary m-2">cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="showAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+      All fields are necessities
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+        (click)="showAlert = false"></button>
+    </div>
+  </section>
+
+</main>
