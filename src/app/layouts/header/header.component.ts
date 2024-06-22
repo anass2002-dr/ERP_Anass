@@ -13,16 +13,16 @@ export class HeaderComponent implements OnInit {
   public user: Record<string, any> | undefined
   constructor(@Inject(DOCUMENT) private document: Document, private route: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      var user = ittone.getSession()
-      this.dossiers = [];
-      ittone.getData("SDossiers/GetDossiers", { idGroup: user?.['idGroup'] })
-        .then((data) => {
-          this.dossiers = data
-          ittone.idDossier = data[0].idDossier
-        })
-        .catch(error => ittone.error('Error fetching data:' + error));
-    });
+    // this.route.params.subscribe(params => {
+    //   var user = ittone.getSession()
+    //   this.dossiers = [];
+    //   ittone.getData("SDossiers/GetDossiers", { idGroup: user?.['idGroup'] })
+    //     .then((data) => {
+    //       this.dossiers = data
+    //       ittone.idDossier = data[0].idDossier
+    //     })
+    //     .catch(error => ittone.error('Error fetching data:' + error));
+    // });
   }
   sidebarToggle() {
     this.document.body.classList.toggle('toggle-sidebar');
